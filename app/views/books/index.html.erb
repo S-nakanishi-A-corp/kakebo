@@ -1,0 +1,26 @@
+<h1>家計簿</h1>
+<table class="table table-striped">
+  <tr>
+    <th>年月</th>
+    <th>区分</th>
+    <th>科目</th>
+    <th>金額</th>
+    <th>リンク</th>
+  </tr>
+  <% @books.each do |book| %>
+  <tr>
+    <td><%= book.year %>年<%= book.month %>月</td>
+    <% if book.inout == 1 %>
+        <td>収入</td>
+    <% else %>
+        <td>支出</td>
+    <% end %>
+    <td><%= book.category %></td>
+    <td><%= book.amount %>万円</td>
+    <td>
+        <%= link_to("詳細", book, class: "btn btn-info") %>
+    </td>
+  </tr>
+  <% end %>
+</table>
+<%= link_to("新規作成", "/books/new", class: "btn btn-info") %>
