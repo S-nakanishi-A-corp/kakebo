@@ -18,9 +18,12 @@
     <td><%= book.category %></td>
     <td><%= book.amount %>万円</td>
     <td>
-        <%= link_to("詳細", book, class: "btn btn-info") %>
+        <%= link_to("詳細", book_path(book), class: "btn btn-info") %>
+        <%= link_to("編集", books_edit_path(book), class: "btn btn-warning") %>
+        <%= link_to("削除", book_path(book), method: :delete, data: {confirm: '本当に削除しますか？'}, class: "btn btn-danger") %>
     </td>
   </tr>
   <% end %>
 </table>
-<%= link_to("新規作成", "/books/new", class: "btn btn-info") %>
+<%= link_to("トップページへ", "/") %>
+<%= link_to("新規作成", books_new_path, class: "btn btn-success") %>
