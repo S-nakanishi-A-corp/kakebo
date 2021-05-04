@@ -24,8 +24,11 @@
         </div>
       <% end %>
 
-      <%= link_to("トップ", "/") %>
-      <%= link_to("一覧", books_index_path) %>
+      <div class="header">
+        <%= link_to("トップ", "/") %>
+        <%= link_to("一覧", books_index_path) %>
+        <%= link_to("ポートフォリオへ", "https://s-nakanishi-a-corp.github.io/Portfolio/", class: "portfolio") %>
+      </div>
 
       <%= yield %>
     </div>
