@@ -24,11 +24,20 @@
         </div>
       <% end %>
 
-      <div class="header">
-        <%= link_to("トップ", "/") %>
-        <%= link_to("一覧", books_index_path) %>
-        <%= link_to("ポートフォリオへ", "https://s-nakanishi-a-corp.github.io/Portfolio/", class: "portfolio") %>
-      </div>
+      <ul class="nav justify-content-center border border-primary">
+        <li class="nav-item">
+          <%= link_to("index", books_index_path, class: "nav-link") %>
+        </li>
+        <li class="nav-item">
+          <%= link_to("new create", books_new_path, class: "nav-link") %>
+        </li>
+        <li class="nav-item">
+          <%= link_to("Portfolio", "https://s-nakanishi-a-corp.github.io/Portfolio/", class: "nav-link") %>
+        </li>
+        <li class="nav-item">
+          <%= link_to("Login", "#", class: "nav-link disabled") %>
+        </li>
+      </ul>
 
       <%= yield %>
     </div>
