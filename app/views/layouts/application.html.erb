@@ -12,6 +12,22 @@
 
   <body>
     <div class="container">
+
+      <ul class="nav justify-content-center border border-primary">
+        <li class="nav-item">
+          <%= link_to("top", books_path, class: "nav-link") %>
+        </li>
+        <li class="nav-item">
+          <%= link_to("new create", new_book_path, class: "nav-link") %>
+        </li>
+        <li class="nav-item">
+          <%= link_to("Portfolio", "https://s-nakanishi-a-corp.github.io/Portfolio/", class: "nav-link") %>
+        </li>
+        <li class="nav-item">
+          <%= link_to("Login", "#", class: "nav-link disabled") %>
+        </li>
+      </ul>
+
       <% if flash[:notice] %>
         <div class="alert alert-success" role="alert">
           <%= flash[:notice] %>
@@ -23,21 +39,6 @@
           <%= flash[:alert] %>
         </div>
       <% end %>
-
-      <ul class="nav justify-content-center border border-primary">
-        <li class="nav-item">
-          <%= link_to("index", books_index_path, class: "nav-link") %>
-        </li>
-        <li class="nav-item">
-          <%= link_to("new create", books_new_path, class: "nav-link") %>
-        </li>
-        <li class="nav-item">
-          <%= link_to("Portfolio", "https://s-nakanishi-a-corp.github.io/Portfolio/", class: "nav-link") %>
-        </li>
-        <li class="nav-item">
-          <%= link_to("Login", "#", class: "nav-link disabled") %>
-        </li>
-      </ul>
 
       <%= yield %>
     </div>

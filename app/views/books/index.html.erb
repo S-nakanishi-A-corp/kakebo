@@ -1,4 +1,26 @@
 <h1>家計簿一覧</h1>
+
+<div class="card">
+  <div class="card-body">
+    <%= form_with method: "get", local: true do |f| %>
+      <div class="form-row">
+        <div class="col">
+          <%= f.number_field "year", min: 2000, max: 2100, placeholder: "年度を入力", class: "form-control" %>
+        </div>
+        <div class="col">
+          <%= f.number_field "month", min: 1, max: 12, placeholder: "対象月を入力", class: "form-control" %>
+        </div>
+        <div class="col">
+          <%= f.text_field "category", placeholder: "科目を入力", class: "form-control" %>
+        </div>
+        <div class="col">
+          <%= f.submit "検索", class: "btn btn-primary" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
 <table class="table table-striped">
   <tr>
     <th>年月</th>
@@ -7,22 +29,50 @@
     <th>金額</th>
     <th>リンク</th>
   </tr>
+  <% increase = 0 %>
+  <% decrease = 0 %>
   <% @books.each do |book| %>
-  <tr>
-    <td><%= book.year %>年<%= book.month %>月</td>
-    <% if book.inout == 1 %>
+    <tr>
+      <td><%= book.year %>年<%= book.month %>月</td>
+      <% if book.inout == 1 %>
         <td>収入</td>
-    <% else %>
+      <% else %>
         <td>支出</td>
-    <% end %>
-    <td><%= book.category %></td>
-    <td><%= book.amount %>円</td>
-    <td>
+      <% end %>
+      <td><%= book.category %></td>
+      <td><%= book.amount %>円</td>
+      <td>
         <%= link_to("詳細", book_path(book), class: "btn btn-info") %>
-        <%= link_to("編集", books_edit_path(book), class: "btn btn-warning") %>
+        <%= link_to("編集", edit_book_path(book), class: "btn btn-warning") %>
         <%= link_to("削除", book_path(book), method: :delete, data: {confirm: '本当に削除しますか？'}, class: "btn btn-danger") %>
-    </td>
-  </tr>
+      </td>
+    </tr>
+    <% if book.inout == 1 %>
+      <% increase += book.amount %>
+    <% else %>
+      <% decrease += book.amount %>
+    <% end %>
   <% end %>
+  <tr>
+    <td></td>
+    <td></td>
+    <td>収支合計</td>
+    <td><%= increase %>円</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td>支出合計</td>
+    <td><%= decrease %>円</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td>合計</td>
+    <td><%= increase-decrease %>円</td>
+    <td></td>
+  </tr>
 </table>
-<%= link_to("新規作成", books_new_path, class: "btn btn-success") %>
+<%= link_to("新規作成", new_book_path, class: "btn btn-success") %>

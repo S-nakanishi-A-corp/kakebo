@@ -1,0 +1,40 @@
+<h1>家計簿<%= type %></h1>
+
+<%= form_with model: book, local: true, method: method do |form| %>
+    <div class="form-inline col-sm-10">
+        <%= form.number_field :year, class: "form-control col-md-2" %>
+        <label>年</label>
+
+        <%= form.number_field :month, class: "form-control col-md-2" %>
+        <lavel>月</label>
+    </div>
+
+    <div class="form-group col-sm-10">
+        <lavel>科目</label>
+        <%= form.text_field :category, class: "form-control" %>
+    </div>
+
+    <div class="form-group col-sm-10">
+        <lavel>金額</label>
+        <%= form.number_field :amount, class: "form-control" %>
+    </div>
+    
+    <div class="col-sm-10">
+        
+        <label>区分</label>
+
+        <div class="form-group row">
+            <div class="col-sm-6 btn-group" data-toggle="buttons">
+                <label class="btn btn-outline-primary" style="width:50%">
+                    <%= form.radio_button :inout, 1, {} %> 収入
+                </label>
+                <label class="btn btn-outline-danger" style="width:50%">
+                    <%= form.radio_button :inout, 0, {} %> 支出
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <%= link_to("戻る", books_path, class:"btn btn-secondary") %>
+    <%= form.submit type, class: "btn btn-primary" %>
+<% end %>

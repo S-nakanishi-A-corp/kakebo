@@ -21,5 +21,6 @@
     <td><%= @book.amount %>円</td>
   </tr>
 </table>
-<%= link_to("戻る", books_index_path, class: "btn btn-secondary") %>
-<%= link_to("編集", books_edit_path(@book), class: "btn btn-warning") %>
+<%= link_to("戻る", books_path, class: "btn btn-secondary") %>
+<%= link_to("編集", edit_book_path(@book), class: "btn btn-warning") %>
+<h1>この画面要る？</h1>
